@@ -11,6 +11,8 @@ import {
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 //import NavigationBar from '../component/NavigationBar';
 const { width, height } = Dimensions.get("screen");
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 const homeImage = require("../../assets/images/home.jpg")
 const airPort = require("../../assets/images/Airport.png")
@@ -19,7 +21,9 @@ const flight = require("../../assets/images/flight.png")
 const mostTrack = require("../../assets/images/mostTrack.png")
 
 
-const Home = () => {
+const Home = ({route}) => {
+    const {name} =  route.params;
+    const navigation = useNavigation<StackNavigationProp<any>>();
     return (
         <View style={{
             height: height,
@@ -72,7 +76,7 @@ const Home = () => {
                     fontSize: 14,
                     fontWeight: '200',
                 }}>
-                    asangikanethmini@gmail.com
+                   {name}
                 </Text>
                 <View style={{
                     borderWidth: 0.5,
@@ -96,7 +100,7 @@ const Home = () => {
                     height: 900
                     //backgroundColor: '#D6E681'
                 }}>
-                    <TouchableOpacity style={{ width: '100%' }}>
+                    <TouchableOpacity style={{ width: '100%' }} onPress={() => navigation.navigate("AirPorts")}>
                         <View style={{
                             width: "100%",
                             height: 132,
@@ -133,7 +137,7 @@ const Home = () => {
                         </View>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={{ width: '100%' }}>
+                    <TouchableOpacity style={{ width: '100%' }} onPress={() => navigation.navigate("AirLine")}>
                         <View style={{
                             width: "100%",
                             height: 132,
@@ -169,7 +173,7 @@ const Home = () => {
                             </View>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{ width: '100%' }}>
+                    <TouchableOpacity style={{ width: '100%' }} onPress={() => navigation.navigate("FlightsSeach")}>
                         <View style={{
                             width: "100%",
                             height: 132,
@@ -205,7 +209,7 @@ const Home = () => {
                             </View>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{ width: '100%' }}>
+                    <TouchableOpacity style={{ width: '100%' }} onPress={() => navigation.navigate("MostTracked")}>
                         <View style={{
                             width: "100%",
                             height: 132,
